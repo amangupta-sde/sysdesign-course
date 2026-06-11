@@ -7,6 +7,7 @@ const lessons = [
   { slug: "interview-framework", title: "Interview Framework", href: "/interview-framework" },
   { slug: "dns", title: "DNS — The Internet's Phone Book", href: "/dns" },
   { slug: "http-protocols", title: "HTTP & Protocols", href: "/http-protocols" },
+  { slug: "tcp-handshake", title: "TCP Handshake", href: "/tcp-handshake" },
   { slug: "url-shortener", title: "URL Shortener", href: "#" },
   { slug: "instagram", title: "Instagram", href: "#" },
   { slug: "chat-system", title: "Chat System", href: "#" },
