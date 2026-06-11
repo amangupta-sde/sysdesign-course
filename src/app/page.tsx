@@ -80,7 +80,7 @@ const modules = [
   { icon: "🏗️", title: "What is System Design?", desc: "Understand the fundamentals — what it is, why it matters, and the building blocks.", href: "/what-is-system-design" },
   { icon: "🗺️", title: "Interview Framework", desc: "The 7-step framework to structure any system design interview in 40 minutes.", href: "/interview-framework" },
   { icon: "🌐", title: "DNS", desc: "How the internet translates domain names to IP addresses — the first step of every request.", href: "/dns" },
+  { icon: "📡", title: "HTTP & Protocols", desc: "How machines talk — from raw TCP to HTTP, WebSockets, and real-time communication.", href: "/http-protocols" },
   { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
   { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
-  { icon: "💬", title: "Chat System", desc: "Real-time messaging with WebSockets, message ordering, and presence.", href: "#" },
 ];

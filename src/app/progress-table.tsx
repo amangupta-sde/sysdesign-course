@@ -6,6 +6,7 @@ const lessons = [
   { slug: "what-is-system-design", title: "What is System Design?", href: "/what-is-system-design" },
   { slug: "interview-framework", title: "Interview Framework", href: "/interview-framework" },
   { slug: "dns", title: "DNS — The Internet's Phone Book", href: "/dns" },
+  { slug: "http-protocols", title: "HTTP & Protocols", href: "/http-protocols" },
   { slug: "url-shortener", title: "URL Shortener", href: "#" },
   { slug: "instagram", title: "Instagram", href: "#" },
   { slug: "chat-system", title: "Chat System", href: "#" },
