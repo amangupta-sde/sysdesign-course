@@ -15,6 +15,7 @@ const lessons = [
   { slug: "api-gateway", title: "API Gateways", href: "/api-gateway" },
   { slug: "throttling", title: "Throttling & Rate Limiting", href: "/throttling" },
   { slug: "consistent-hashing", title: "Consistent Hashing", href: "/consistent-hashing" },
+  { slug: "data-partitioning", title: "Data Partitioning & Sharding", href: "/data-partitioning" },
   { slug: "url-shortener", title: "URL Shortener", href: "#" },
   { slug: "instagram", title: "Instagram", href: "#" },
   { slug: "chat-system", title: "Chat System", href: "#" },

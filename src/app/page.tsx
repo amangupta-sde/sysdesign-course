@@ -89,6 +89,7 @@ const modules = [
   { icon: "🚪", title: "API Gateways", desc: "The single front door — auth, routing, rate limiting, and the evolution toward service meshes.", href: "/api-gateway" },
   { icon: "🛑", title: "Throttling & Rate Limiting", desc: "Token buckets, sliding windows, and why rate limiters exist at every layer of a system.", href: "/throttling" },
   { icon: "💍", title: "Consistent Hashing", desc: "The ring algorithm that lets you scale without reshuffling — used by Cassandra, DynamoDB, and CDNs.", href: "/consistent-hashing" },
+  { icon: "🗂️", title: "Data Partitioning", desc: "Sharding strategies — range, hash, directory, geographic — and how every Grokking design uses them.", href: "/data-partitioning" },
   { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
   { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
 ];
