@@ -1,65 +1,86 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ProgressTable } from "./progress-table";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-16">
+      {/* Hero */}
+      <section className="space-y-6 pt-12 text-center">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Master <span className="text-[var(--accent)]">System Design</span> Interviews
+        </h1>
+        <p className="mx-auto max-w-2xl text-lg text-[var(--text-muted)]">
+          A structured, beginner-friendly course to go from zero to designing systems like
+          Twitter, Uber, and Netflix — the same way top engineers at Google and Meta do it.
+        </p>
+        <div className="flex justify-center gap-4">
+          <Link
+            href="/what-is-system-design"
+            className="rounded-lg bg-[var(--accent)] px-6 py-3 font-medium text-white transition hover:bg-[var(--accent-dim)]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Start Learning →
+          </Link>
         </div>
-      </main>
+      </section>
+
+      {/* Progress */}
+      <ProgressTable />
+
+      {/* Curriculum */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Curriculum</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {modules.map((m, i) => (
+            <Link
+              key={i}
+              href={m.href}
+              className={`group rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 transition hover:border-[var(--accent)]/40 hover:bg-[var(--bg-hover)] ${
+                m.href === "#" ? "pointer-events-none opacity-50" : ""
+              }`}
+            >
+              <div className="mb-2 text-2xl">{m.icon}</div>
+              <h3 className="font-semibold group-hover:text-[var(--accent)]">{m.title}</h3>
+              <p className="mt-1 text-sm text-[var(--text-muted)]">{m.desc}</p>
+              {m.href === "#" && (
+                <span className="mt-2 inline-block rounded-full bg-[var(--bg-hover)] px-2 py-0.5 text-xs text-[var(--text-muted)]">
+                  Coming soon
+                </span>
+              )}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Why */}
+      <section className="space-y-4 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-8">
+        <h2 className="text-2xl font-bold">Why System Design?</h2>
+        <div className="grid gap-6 text-sm text-[var(--text-muted)] sm:grid-cols-3">
+          <div>
+            <p className="mb-1 text-3xl">💰</p>
+            <p className="font-medium text-[var(--text)]">Higher Offers</p>
+            <p>Strong SD performance = senior-level offers with higher comp.</p>
+          </div>
+          <div>
+            <p className="mb-1 text-3xl">🧠</p>
+            <p className="font-medium text-[var(--text)]">Real Engineering</p>
+            <p>Unlike leetcode, these skills apply directly to your daily work.</p>
+          </div>
+          <div>
+            <p className="mb-1 text-3xl">🎯</p>
+            <p className="font-medium text-[var(--text)]">Required Round</p>
+            <p>Every FAANG-level interview has a dedicated system design round.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+const modules = [
+  { icon: "🏗️", title: "What is System Design?", desc: "Understand the fundamentals — what it is, why it matters, and the building blocks.", href: "/what-is-system-design" },
+  { icon: "🗺️", title: "Interview Framework", desc: "The 7-step framework to structure any system design interview in 40 minutes.", href: "/interview-framework" },
+  { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
+  { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
+  { icon: "💬", title: "Chat System", desc: "Real-time messaging with WebSockets, message ordering, and presence.", href: "#" },
+  { icon: "🐦", title: "Twitter", desc: "Timeline generation, fan-out strategies, and trending topics.", href: "#" },
+];
