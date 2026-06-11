@@ -11,6 +11,7 @@ const lessons = [
   { slug: "rest-apis", title: "REST & REST over HTTP", href: "/rest-apis" },
   { slug: "monolith-vs-microservices", title: "Monolith vs Microservices", href: "/monolith-vs-microservices" },
   { slug: "cdn", title: "CDN — Content Delivery Networks", href: "/cdn" },
+  { slug: "proxies", title: "Proxies — Forward & Reverse", href: "/proxies" },
   { slug: "url-shortener", title: "URL Shortener", href: "#" },
   { slug: "instagram", title: "Instagram", href: "#" },
   { slug: "chat-system", title: "Chat System", href: "#" },

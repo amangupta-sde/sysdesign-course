@@ -85,6 +85,7 @@ const modules = [
   { icon: "🔄", title: "REST APIs", desc: "The specification that made HTTP the universal API language — verbs, resources, and representations.", href: "/rest-apis" },
   { icon: "🏗️", title: "Monolith vs Microservices", desc: "When to use one codebase vs many services — with real-world examples and interview defaults.", href: "/monolith-vs-microservices" },
   { icon: "🌍", title: "CDN", desc: "Geographically distributed caching — how Netflix serves video in 50ms from anywhere.", href: "/cdn" },
+  { icon: "🔀", title: "Proxies", desc: "Forward & reverse proxies — hiding clients, hiding servers, and database proxies.", href: "/proxies" },
   { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
   { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
 ];
