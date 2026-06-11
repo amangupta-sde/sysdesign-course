@@ -86,6 +86,7 @@ const modules = [
   { icon: "🏗️", title: "Monolith vs Microservices", desc: "When to use one codebase vs many services — with real-world examples and interview defaults.", href: "/monolith-vs-microservices" },
   { icon: "🌍", title: "CDN", desc: "Geographically distributed caching — how Netflix serves video in 50ms from anywhere.", href: "/cdn" },
   { icon: "🔀", title: "Proxies", desc: "Forward & reverse proxies — hiding clients, hiding servers, and database proxies.", href: "/proxies" },
+  { icon: "🚪", title: "API Gateways", desc: "The single front door — auth, routing, rate limiting, and the evolution toward service meshes.", href: "/api-gateway" },
   { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
   { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
 ];
