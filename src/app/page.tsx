@@ -83,6 +83,7 @@ const modules = [
   { icon: "📡", title: "HTTP & Protocols", desc: "How machines talk — from raw TCP to HTTP, WebSockets, and real-time communication.", href: "/http-protocols" },
   { icon: "🤝", title: "TCP Handshake", desc: "The 3-packet dance before every connection — and why it's a major latency source.", href: "/tcp-handshake" },
   { icon: "🔄", title: "REST APIs", desc: "The specification that made HTTP the universal API language — verbs, resources, and representations.", href: "/rest-apis" },
+  { icon: "🏗️", title: "Monolith vs Microservices", desc: "When to use one codebase vs many services — with real-world examples and interview defaults.", href: "/monolith-vs-microservices" },
   { icon: "🔗", title: "URL Shortener", desc: "Design TinyURL — the classic warm-up problem covering all fundamentals.", href: "#" },
   { icon: "📸", title: "Instagram", desc: "Photo sharing at scale — feed generation, storage, and CDN.", href: "#" },
 ];
