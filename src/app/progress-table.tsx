@@ -8,6 +8,7 @@ const lessons = [
   { slug: "dns", title: "DNS — The Internet's Phone Book", href: "/dns" },
   { slug: "http-protocols", title: "HTTP & Protocols", href: "/http-protocols" },
   { slug: "tcp-handshake", title: "TCP Handshake", href: "/tcp-handshake" },
+  { slug: "rest-apis", title: "REST & REST over HTTP", href: "/rest-apis" },
   { slug: "url-shortener", title: "URL Shortener", href: "#" },
   { slug: "instagram", title: "Instagram", href: "#" },
   { slug: "chat-system", title: "Chat System", href: "#" },
