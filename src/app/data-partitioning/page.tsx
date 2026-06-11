@@ -15,28 +15,90 @@ export default function DataPartitioningPage() {
       </header>
 
       {/* 1 */}
-      <Section num={1} title="What Is Data Partitioning?">
-        <p>
-          Data partitioning divides a large dataset into smaller parts (<strong>partitions</strong>),
-          each stored on a separate server. Each partition is independent and contains a subset of the data.
-        </p>
-        <Callout>
-          <strong>Why?</strong> A single database server can&apos;t store 15TB of data or handle 20K
-          reads/sec forever. Partitioning distributes load across machines — improving performance,
-          scalability, and fault isolation.
-        </Callout>
-        <h3 className="pt-2 text-base font-semibold">Key Terms</h3>
+      <Section num={1} title="Shard vs Partition — The Key Distinction">
+        <p>People use these terms interchangeably, but they operate at different levels:</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-[var(--border)] text-left">
+                <th className="pb-3 pr-4 font-medium">Concept</th>
+                <th className="pb-3 pr-4 font-medium">Operates At</th>
+                <th className="pb-3 font-medium">What It Is</th>
+              </tr>
+            </thead>
+            <tbody className="text-[var(--text-muted)]">
+              <tr className="border-b border-[var(--border)]/50">
+                <td className="py-2 pr-4 font-mono text-[var(--accent)]">Shard</td>
+                <td className="py-2 pr-4">Server level (physical)</td>
+                <td className="py-2">A separate DB server holding a slice of data</td>
+              </tr>
+              <tr className="border-b border-[var(--border)]/50">
+                <td className="py-2 pr-4 font-mono text-[var(--accent)]">Partition</td>
+                <td className="py-2 pr-4">Data level (logical)</td>
+                <td className="py-2">Mutually exclusive subsets of data — no overlap</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Callout>
+          <strong>Always partition first, then decide how to distribute partitions across shards.</strong><br />
+          100GB dataset → split into 5 partitions (30/10/30/20/10 GB) → place partitions A,C on Shard 1
+          and B,D,E on Shard 2. If partition B gets hot, move it to Shard 1. Logical partitioning gives
+          the superpower of easy redistribution.
+        </Callout>
+      </Section>
+
+      {/* 1b */}
+      <Section num={2} title="How a Database Scales (Evolution)">
+        <p>A database is just an EC2 server with MySQL installed, exposing port 3306. Here&apos;s how it evolves:</p>
+        <CodeBlock>{`Stage 1 — Day Zero (single server)
+  One DB, one process, local disk. ~100 writes/sec. Cheap.
+
+Stage 2 — Vertical Scaling
+  Traffic grows → add more CPU, RAM, disk to same server.
+  DB process unchanged; only host capacity increases.
+
+Stage 3 — Read Replica
+  Reads grow heavy → add a follower (master-slave):
+  All writes → master. All reads → replica.
+  Master replicates data continuously.
+
+Stage 4 — More Vertical Scaling
+  Bigger instance → ~1000 writes/sec.
+  Eventually hits hardware limits. Vertical is CAPPED.
+
+Stage 5 — Horizontal Scaling (SHARDING)
+  Add another DB server. Split data 50/50.
+  Each shard handles ~750 writes/sec → total 1500/sec.
+  Achieves throughput no single machine ever could.`}</CodeBlock>
+        <Tip>
+          Vertical scaling is easy but capped. Horizontal scaling (sharding) is required at scale.
+          This is why every large system design in interviews involves sharding.
+        </Tip>
+      </Section>
+
+      {/* 1c */}
+      <Section num={3} title="The 2×2 Matrix">
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-[var(--border)] text-left">
+                <th className="pb-3 pr-3 font-medium">Sharded?</th>
+                <th className="pb-3 pr-3 font-medium">Partitioned?</th>
+                <th className="pb-3 font-medium">What It Looks Like</th>
+              </tr>
+            </thead>
             <tbody className="text-[var(--text-muted)]">
               {[
-                ["Partition", "A smaller piece of the overall dataset stored on one node"],
-                ["Shard", "Same as partition (used in horizontal partitioning context)"],
-                ["Partition Key", "The attribute used to determine which partition data goes to"],
-              ].map(([term, def], i) => (
+                ["No", "No", "Day-zero setup — single DB server, single dataset"],
+                ["No", "Yes", "Multiple logical DBs on one MySQL server (e.g., airline_check_in + ticket_booking)"],
+                ["Yes", "No", "Read replica — same data copied to another server"],
+                ["Yes", "Yes", "Data split across multiple servers — handles heavy reads AND writes"],
+              ].map(([s, p, looks], i) => (
                 <tr key={i} className="border-b border-[var(--border)]/50">
-                  <td className="py-2 pr-4 font-mono text-xs text-[var(--accent)]">{term}</td>
-                  <td className="py-2">{def}</td>
+                  <td className="py-2 pr-3 font-medium text-[var(--text)]">{s}</td>
+                  <td className="py-2 pr-3 font-medium text-[var(--text)]">{p}</td>
+                  <td className="py-2">{looks}</td>
                 </tr>
               ))}
             </tbody>
@@ -44,8 +106,8 @@ export default function DataPartitioningPage() {
         </div>
       </Section>
 
-      {/* 2 */}
-      <Section num={2} title="Partitioning Methods">
+      {/* 12 */}
+      <Section num={4} title="Partitioning Methods">
         <div className="space-y-4">
           <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-4">
             <p className="text-sm font-semibold text-blue-400">a. Horizontal Partitioning (Sharding)</p>
@@ -92,8 +154,8 @@ Access patterns determine the split:
         </div>
       </Section>
 
-      {/* 3 */}
-      <Section num={3} title="Sharding Techniques">
+      {/* 11 */}
+      <Section num={5} title="Sharding Techniques">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -118,8 +180,8 @@ Access patterns determine the split:
         </div>
       </Section>
 
-      {/* 4 */}
-      <Section num={4} title="Deep Dive: The Three Core Strategies">
+      {/* 12 */}
+      <Section num={6} title="Deep Dive: The Three Core Strategies">
         <div className="space-y-4">
           <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-4">
             <p className="text-sm font-semibold text-[var(--accent)]">Range-Based Sharding</p>
@@ -156,8 +218,8 @@ user_789 → Shard 7
         </div>
       </Section>
 
-      {/* 5 */}
-      <Section num={5} title="How Sharding Appears in Grokking Designs">
+      {/* 11 */}
+      <Section num={7} title="How Sharding Appears in Grokking Designs">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -192,8 +254,8 @@ user_789 → Shard 7
         </Tip>
       </Section>
 
-      {/* 6 */}
-      <Section num={6} title="Benefits of Data Partitioning">
+      {/* 12 */}
+      <Section num={8} title="Benefits of Data Partitioning">
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             { title: "Query Performance", desc: "Queries target specific shards — scan less data, faster results." },
@@ -213,8 +275,8 @@ user_789 → Shard 7
         </div>
       </Section>
 
-      {/* 7 */}
-      <Section num={7} title="Common Problems">
+      {/* 11 */}
+      <Section num={9} title="Common Problems">
         <div className="space-y-3">
           {[
             { title: "Data Skew", desc: "Uneven distribution — one shard gets 80% of traffic. Cause: poor partition key choice. Fix: consistent hashing with virtual nodes, or re-partition.", color: "red" },
@@ -232,8 +294,8 @@ user_789 → Shard 7
         </div>
       </Section>
 
-      {/* 8 */}
-      <Section num={8} title="Choosing a Partition Key — Decision Framework">
+      {/* 12 */}
+      <Section num={10} title="Choosing a Partition Key — Decision Framework">
         <CodeBlock>{`Ask yourself:
 
 1. What's my most common query?
@@ -255,8 +317,8 @@ user_789 → Shard 7
    → Or denormalize to avoid cross-shard joins.`}</CodeBlock>
       </Section>
 
-      {/* 9 */}
-      <Section num={9} title="Planning for Growth (from the books)">
+      {/* 11 */}
+      <Section num={11} title="Planning for Growth (from the books)">
         <p>The Grokking book recommends:</p>
         <Callout>
           Start with a <strong>large number of logical partitions</strong> mapped to fewer physical servers.
@@ -275,8 +337,8 @@ After growth:
 Only the config/directory changed — no rehashing.`}</CodeBlock>
       </Section>
 
-      {/* 10 */}
-      <Section num={10} title="Interview Questions">
+      {/* 12 */}
+      <Section num={12} title="Interview Questions">
         <div className="space-y-3">
           {interviewQs.map((q, i) => (
             <details key={i} className="group rounded-lg border border-[var(--border)] bg-[var(--bg-card)]">
